@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nrwl/rspack:rspack",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "target": "web",
@@ -14,7 +16,10 @@
         "main": "apps/my-app/src/main.tsx",
         "tsConfig": "apps/my-app/tsconfig.app.json",
         "rspackConfig": "apps/my-app/rspack.config.js",
-        "assets": ["apps/my-app/src/favicon.ico", "apps/my-app/src/assets"]
+        "assets": [
+          "apps/my-app/src/favicon.ico",
+          "apps/my-app/src/assets"
+        ]
       },
       "configurations": {
         "development": {
@@ -41,9 +46,13 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/my-app/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/my-app/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "serve-static": {
@@ -54,7 +63,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/my-app/jest.config.ts",
         "passWithNoTests": true
@@ -63,6 +74,45 @@
         "ci": {
           "ci": true,
           "codeCoverage": true
+        }
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/my-app/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": [
+        "{options.outputDir}"
+      ],
+      "options": {
+        "outputDir": "dist/storybook/my-app",
+        "configDir": "apps/my-app/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "my-app:build-storybook",
+        "staticFilePath": "dist/storybook/my-app"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "my-app:build-storybook:ci"
         }
       }
     }
