@@ -1,13 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from "./app.module.css";
-
-import NxWelcome from "./nx-welcome";
+import { MyLib1 } from '@rspack-storybook-nx/my-lib-1';
 
 export function App() {
   return (
     <>
-      <NxWelcome title="my-app" />
-
+      <p>Welcome to my-app</p>
+      <MyLib1 />
       <div />
     </>
   );

@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@rspack-storybook-nx/my-lib-1": ["libs/my-lib-1/src/index.ts"],
+      "@rspack-storybook-nx/ui/my-lib-2": ["libs/ui/my-lib-2/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
